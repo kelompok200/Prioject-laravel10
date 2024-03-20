@@ -1,0 +1,80 @@
+
+.delete{
+    background: red; border: solid 1px red;
+}
+.delete:hover{
+    background: rgb(226, 0, 0);
+    border: solid 1px rgb(226, 0, 0);
+}h4{
+    font-size: 20px;
+    margin: 50px;
+}.up button{
+    float: right;
+    margin: 10px;
+}
+.up a{
+    float: right;
+    text-decoration: none;
+    color: white;
+    background: blue;
+    margin: 10px;
+}
+.con{
+    padding: 10px;
+    border: 1px solid rgba(43, 43, 43, 0.781);
+    border-radius: 5px;
+}
+@keyframes pop{
+    0%{
+        transform: translateY(-50px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}.navigasi{
+    float: left;
+    width: 300px;
+    min-height: 620px;
+    max-height: 800px;
+    background: rgba(54, 54, 54, 0.616);
+    transition: all 0.5s linear;
+}a{
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+}
+ul:nth-child(2){
+    text-align: center;
+}
+ul{
+    padding: 0px 0px 10px;
+    height: 35px;
+}
+img{
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid lemonchiffon;
+}
+ul:nth-child(2){
+    margin-bottom: 50px;
+}
+ul:not(:nth-child(2)){
+    margin-top: 10px;
+}ul:hover:not(:is(:nth-child(2),:first-child,:last-child)){
+    background: rgba(46, 46, 46, 0.623);
+}ul button{
+    margin-top: 100px;
+}
+.icon{
+    display: none;
+}
+@media screen and (max-width: 600px){
+    .navigasi ol a:not(:nth-child(2)){
+        display: none;
+    }.navigasi{
+        transition: all 0.5s linear;
+        max-width: 100px;
+    }
+}
