@@ -7,7 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Add Bootstrap Data Table css -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.10/css/dataTables.bootstrap5.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@latest/css/all.min.css">
+    <title>Halaman Login</title>
     <style>
         body{
             display: flex;
@@ -52,21 +53,23 @@
 <body>
     <div class="login">
         <h2><b>Login</b></h2><br>
+        @foreach ($data as $d)
         <form action="{{route('login_proses')}}" method="POST">
-            @csrf
+        @endforeach
+        @csrf
             <div class="username">
                 <label for="text">Username/Email</label>
                 <input type="text" class="inputanLog" name="email" id="" style="font-size: 17px;">
                 @error('email')
-                    <small style="color:red;">{{$message}}</small>
+                    <small style="color:red;"><i class="fa-solid fa-triangle-exclamation"></i>{{$message}}</small>
                 @enderror<br>
             </div>
             
             <div class="password">
                 <label for="password">Password</label>
-                <input type="password" class="inputanSig" name="password" id="" style="font-size: 17px;">
+                <input type="password" class="inputanSig" name="password" id="pass" style="font-size: 17px;">
                 @error('password')
-                    <small style="color:red;">{{$message}}</small><br>
+                    <small style="color:red;"><i class="fa-solid fa-triangle-exclamation"></i>{{$message}}</small><br>
                 @enderror
                 <input type="checkbox" name="" id="checkbox"><span>check</span><br>
                 <br>
@@ -87,5 +90,17 @@
             });
         </script>
     @endif
+    @if($message = Session::get('logout'))
+        <script>
+            Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{$message}}",
+            showConfirmButton: false,
+            timer: 1500
+            });
+        </script>
+    @endif
+    <script src="{{asset('check2.js')}}"></script>
 </body>
 </html>

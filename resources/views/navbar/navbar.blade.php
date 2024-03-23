@@ -4,9 +4,9 @@
     </ul>
     <ul>
         <a href=""><img src="{{asset('github.jpg')}}" alt="" class=""><br><span class="ml-2">
-            @if($message = Session::get('nama'))
-                {{$message}}
-            @endif
+            @foreach ($user as $s)
+                {{$s->name}}
+            @endforeach
         </span></a>
     </ul>
     <ul>
@@ -14,12 +14,6 @@
     </ul>
     <ul>
         <a href="">Data</a>
-    </ul>
-    <ul>
-        <a href="">blabla</a>
-    </ul>
-    <ul>
-        <a href="">blabla</a>
     </ul>
     <ul>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logout">

@@ -1,11 +1,5 @@
 
-.delete{
-    background: red; border: solid 1px red;
-}
-.delete:hover{
-    background: rgb(226, 0, 0);
-    border: solid 1px rgb(226, 0, 0);
-}h4{
+h4{
     font-size: 20px;
     margin: 50px;
 }.up button{
@@ -24,24 +18,17 @@
     border: 1px solid rgba(43, 43, 43, 0.781);
     border-radius: 5px;
 }
-@keyframes pop{
-    0%{
-        transform: translateY(-50px);
-    }
-    100%{
-        transform: translateY(0px);
-    }
-}.navigasi{
+.navigasi{
     float: left;
     width: 300px;
     min-height: 620px;
     max-height: 800px;
-    background: rgba(54, 54, 54, 0.616);
+    background: rgba(199, 199, 199, 0.363);
     transition: all 0.5s linear;
 }a{
     text-decoration: none;
     padding: 10px;
-    color: white;
+    color: black;
 }
 ul:nth-child(2){
     text-align: center;
@@ -65,7 +52,8 @@ ul:not(:nth-child(2)){
 }ul:hover:not(:is(:nth-child(2),:first-child,:last-child)){
     background: rgba(46, 46, 46, 0.623);
 }ul button{
-    margin-top: 100px;
+    top: 550px;
+    position: absolute;
 }
 .icon{
     display: none;

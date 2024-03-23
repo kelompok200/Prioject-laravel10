@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\aktivitaslogin;
+use App\Models\aktivitas;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -58,6 +58,7 @@ class login extends Controller
     }
     public function login_proses(Request $request)
     {
+
         $request->validate([
             'email' => 'required',
             'password' => 'required',
@@ -69,23 +70,34 @@ class login extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-        $users = User::all();
-        if(!($user = $users->where('email',$data['email'])->first())){
+        if(!(User::where('email',$data['email'])->first())){
             $validation = ['email' => 'Email Atau Password salah!!'];
             return redirect()->back()->withInput()->withErrors($validation);
         }
-        $user = $users->where('email',$data['email'])->first();
-        $nama = $user->name;
+
+        $users = User::all();
+        
+
+        $aktif['email'] = $request->email;
+
         if (Auth::attempt($data)){
-            return redirect()->route('dasboard')->with('sukses', 'Anda Berhasil Login')->with('nama',$nama);
+
+            aktivitas::create($aktif);
+
+            $user = User::where('email',$request->email)->limit(1)->get();
+            
+            foreach($user as $s)
+            return redirect()->route('dasboard',['id'=>$s->name])->with('sukses', 'Anda Berhasil Login');
         }
         return back()->withErrors(['email' => 'Username atau password salah.']);
 
     }
-    public function logout()
+    public function akunlogout()
     {
         if(Auth::logout()){
-            return redirect()->route('login');
+            return redirect()->route('login')->with('logout','Berhasil Logout');
+        }else{
+            return redirect()->back();
         }
     }
 }

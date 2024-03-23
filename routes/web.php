@@ -17,17 +17,19 @@ use App\Http\Controllers\login;
 
 /* route absensi*/
 route::middleware(['auth'])->group(function(){
-    route::get('/dashboard',[absensi::class,'index'])->name('dasboard');
-    route::get('/create',[absensi::class,'create'])->name('create');
-    route::post('/store',[absensi::class,'store'])->name('store');
-    route::get('/edit/{id}',[absensi::class,'edit'])->name('edit');
-    route::PUT('/update/{id}',[absensi::class,'update'])->name('update');
-    route::post('/delete/{id}',[absensi::class,'delete'])->name('delete');
+    route::get('/dashboard-{id}',[absensi::class,'index'])->name('dasboard');
+    route::get('/{id}/create-absensi-Karyawan',[absensi::class,'create'])->name('create');
+    route::post('/prosess-absensi-karyawan/{id}',[absensi::class,'store'])->name('store');
+    route::get('/{name}/edit-absensi-karyawan-{id}',[absensi::class,'edit'])->name('edit');
+    route::PUT('/{name}/update-absensi-karyawan-{id}',[absensi::class,'update'])->name('update');
+    route::post('/{name}/prosessing-delete-{id}',[absensi::class,'delete'])->name('delete');
+    route::get('{name}/show-absensi-karyawan-{id}',[absensi::class,'show'])->name('show');
 });
+
 
 /* route login*/
 route::get('/',[login::class,'login'])->name('login');
 route::get('/signin',[login::class,'signin'])->name('signin');
 route::PUT('/inputsignin',[login::class,'inputsignin'])->name('inputsignin');
 route::post('/login_proses',[login::class,'login_proses'])->name('login_proses');
-route::get('/logout',[login::class,'logout'])->name('logout');
+route::get('/logout',[login::class,'akunlogout'])->name('logout');

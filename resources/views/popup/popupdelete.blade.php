@@ -1,3 +1,4 @@
+@foreach ($user as $s)
 <div class="modal fade" id="staticBackdrop{{$d->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -10,7 +11,7 @@
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <form action="{{route('delete',['id'=>$d->id])}}" method="post">
+        <form action="{{route('delete',['name'=>$s->name,'id'=>$d->id])}}" method="post">
             @csrf
             <button type="submit" class="btn btn-primary"><span class="fa-solid fa-trash"></span>Hapus</button>
         </form>
@@ -18,3 +19,4 @@
     </div>
     </div>
 </div>
+@endforeach

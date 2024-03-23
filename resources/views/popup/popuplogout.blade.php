@@ -1,3 +1,4 @@
+@foreach ($data['aktivitas'] as $d)
 <div class="modal fade" id="logout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -15,3 +16,4 @@
     </div>
     </div>
 </div>
+@endforeach
