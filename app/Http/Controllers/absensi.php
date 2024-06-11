@@ -21,13 +21,9 @@ class absensi extends Controller
             'data' => dataAbsen::get(),
             'user' => User::get(),
             'aktivitas' => aktivitas::get(),
-        ];
-        $name = User::find($id);
-        $user = User::where('name', $id)->get();
+            ];
 
-        session()->flash('name' , $user);
-
-        return view('dasboard',compact('data','user'));
+        return view('dasboard',compact('data','id'));
     }
     public function create(Request $request,$id)
     {
@@ -53,8 +49,6 @@ class absensi extends Controller
     }
     public function edit(Request $request,$name,$id)
     {
-        $iduser = dataAbsen::where('id', $id)->get();
-        $user = User::where('name', $name)->get();
         $data = dataAbsen::find($id);
                 
         return view('edit',compact('user','data','name'));

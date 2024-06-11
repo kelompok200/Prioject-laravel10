@@ -13,9 +13,7 @@
     <div class="card">
       <div class="card-header">
     <h2 class="mt-4 mb-4">ABSENSI KARYAWAN</h2>
-    @foreach ($data as $d)
     <form method="POST" action="{{ route('store',['id'=>$d->name]) }}">
-      @endforeach
         @csrf
         <div class="alert alert-success" role="alert" id="myAlert">
         </div>
