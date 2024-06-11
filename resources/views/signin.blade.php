@@ -75,7 +75,7 @@
             <div class="password">
                 <label for="password">Password</label><br>
                 <input type="password" name="password" id="pass" style="font-size: 17px;">
-                <input type="checkbox" name="" id="checkbox"><span> check</span>
+                <input type="checkbox" name="" id="checkbox" class="ml-2"><span> tampilkan password</span>
                 @error('password')
                     <br><small style="color:red;"><i class="fa-solid fa-triangle-exclamation"></i>{{$message}}</small>
                 @enderror
@@ -83,7 +83,7 @@
             <div class="password">
                 <label for="password">Confirm Password</label><br>
                 <input type="password" name="verifikasi" id="confirm" style="font-size: 17px;">
-                <input type="checkbox" name="" id="checkbox2"><span> check</span>
+                <input type="checkbox" name="" id="checkbox2" class="ml-2"><span> tampilkan password</span>
                 <br>
             </div><br>
             <input type="submit" class="submit" value="Register">

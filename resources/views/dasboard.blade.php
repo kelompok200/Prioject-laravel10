@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('style.css')}}">
 </head>
 <body>
+    @if($id === 'Zoro')
     @include('navbar.navbar')
     <div class="container">
         <div class="row justify-content-center">
@@ -20,39 +21,39 @@
                         <h3 class="card-title">Absensi Karyawan</h3>
                     </div>
                     <div class="card-body">
-                        @foreach ($user as $s)
-                    <form action="{{route('create',['id'=>$s->name])}}">
-                        @endforeach
-                        <button type="submit" class="btn btn-primary mb-3">Tambah Absen</button>
-                    </form>
+                    <a href="{{url('cetak-pdf')}}" class="btn btn-primary mb-3">Cetak PDF</a>
+                    {{-- <a href="{{url('cetak-excel')}}" class="btn btn-primary mb-3">Cetak Excel</a> --}}
                         <div class="table-responsive">
-                            <table id="example" class="table table-striped" style="width:100%; backgroud:blue;">
+                            <table id="example" class="table table-striped">
                                     <tr>
-                                        <th>Kode Absensi</th>
-                                        <th>Nama Karyawan</th>
-                                        <th>Tanggal Absensi</th>
-                                        <th>Jam Masuk</th>
-                                        <th>Jam Keluar</th>
-                                        <th>Action</th>
+                                        <th scope="col">No. </th>
+                                        <th scope="col">Kode Absensi</th>
+                                        <th scope="col">Nama Karyawan</th>
+                                        <th scope="col">Tanggal Absensi</th>
+                                        <th scope="col">Jam Masuk</th>
+                                        <th scope="col">Jam Keluar</th>
+                                        <th scope="col">Jenis Shift</th>
+                                        <th scope="col">Action</th>
                                     </tr>
+                                    @php
+                                        $no = 1;
+                                    @endphp
                                         <tr>
                                             @foreach ($data['data'] as $d)
-                                            <th class="ms-1">{{ $d->kode_karyawan}}</th>
-                                            <th class="ms-1">{{ $d->nama_karyawan}}</th>
-                                            <th class="ms-1">{{ $d->tanggal_absensi}}</th>
-                                            <th class="ms-1">{{ $d->jam_masuk}}</th>
-                                            <th class="ms-1">{{ $d->jam_keluar}}</th>
-                                            <th class="ms-1">
-                                                @foreach ($user as $s)
-                                                <a href="{{route('edit',['name' => $s->name,'id'=>$d->id])}}" class="btn btn-primary" id="edit"><span class="fa-solid fa-edit"></span>Edit</a>
-                                                @endforeach
+                                            <td>{{ $no++}}</td>
+                                            <td>{{ $d->kode_karyawan}}</td>
+                                            <td>{{ $d->nama_karyawan}}</td>
+                                            <td>{{ $d->tanggal_absensi}}</td>
+                                            <td>{{ $d->jam_masuk}}</td>
+                                            <td>{{ $d->jam_keluar}}</td>
+                                            <td>{{ $d->jenis_shift}}</td>
+                                            <td>
+                                                <a href="{{route('edit',['name' => $id,'id'=>$d->id])}}" class="btn btn-primary" id="edit"><span class="fa-solid fa-edit"></span>Edit</a>
                                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$d->id}}">
                                                         <span class="fa-solid fa-trash"></span>Delete
                                                     </button>
-                                                @foreach ($user as $s)
-                                                <a href="{{route('show',['name'=>$s->name,'id'=>$d->nama_karyawan])}}" class="btn btn-success" id="edit"><span class="fa-solid fa-eye"></span>Show</a>
-                                                @endforeach
-                                            </th>
+                                                <a href="{{route('show',['name'=>$id,'id'=>$d->id])}}" class="btn btn-success" id="edit"><span class="fa-solid fa-eye"></span>Show</a>
+                                            </td>
                                         </tr>
                                         @include('popup.popupdelete')
                                     @endforeach
@@ -62,8 +63,68 @@
                 </div>
             </div>
         </div>
-        @include('popup.popuplogout')
     </div>
+            @endif
+            @if($id != 'Zoro')
+            @include('navbar.navbar')
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h3 class="card-title">Absensi Karyawan</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{route('create',['id'=>$id])}}">
+                                <button type="submit" class="btn btn-primary mb-3"><span class="fa-solid fa-user-plus"></span>Tambah Absen</button>
+                            </form>
+                        <a href="{{route('pdf',['id'=>$id])}}" class="btn btn-primary mb-3">Cetak PDF</a>
+                        {{-- <a href="{{url('cetak-excel')}}" class="btn btn-primary mb-3">Cetak Excel</a> --}}
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>No. </th>
+                                <th>Kode Absensi</th>
+                                <th>Nama Karyawan</th>
+                                <th>Tanggal Absensi</th>
+                                <th>Jam Masuk</th>
+                                <th>Jam Keluar</th>
+                                <th>Jenis Shift</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                @php
+                                    $no = 1;
+                                @endphp
+                                <tr>
+                                    @foreach ($data['getData'] as $d)
+                                    <th scope="row">{{ $no++}}</th>
+                                    <td>{{ $d->kode_karyawan}}</th>
+                                    <td>{{ $d->nama_karyawan}}</th>
+                                    <td>{{ $d->tanggal_absensi}}</th>
+                                    <td>{{ $d->jam_masuk}}</th>
+                                    <td>{{ $d->jam_keluar}}</th>
+                                    <td>{{ $d->jenis_shift}}</th>
+                                    <td>
+                                        <a href="{{route('edit',['name' => $id,'id'=>$d->id])}}" class="btn btn-primary" id="edit"><span class="fa-solid fa-edit"></span>Edit</a>
+                                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$d->id}}">
+                                                <span class="fa-solid fa-trash"></span>Delete
+                                            </button>
+                                            <a href="{{route('show',['name'=>$id,'id'=>$d->id])}}" class="btn btn-success" id="edit"><span class="fa-solid fa-eye"></span>Show</a>
+                                    </th>
+                                </tr>
+                                @include('popup.popupdelete')
+                            @endforeach
+                        </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            @endif
+        @include('popup.popuplogout')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.10/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.10/js/dataTables.bootstrap5.min.js"></script>

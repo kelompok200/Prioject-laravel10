@@ -64,20 +64,20 @@
                     <small style="color:red;"><i class="fa-solid fa-triangle-exclamation"></i>{{$message}}</small>
                 @enderror<br>
             </div>
-            
+
             <div class="password">
                 <label for="password">Password</label>
                 <input type="password" class="inputanSig" name="password" id="pass" style="font-size: 17px;">
                 @error('password')
                     <small style="color:red;"><i class="fa-solid fa-triangle-exclamation"></i>{{$message}}</small><br>
                 @enderror
-                <input type="checkbox" name="" id="checkbox"><span>check</span><br>
+                <input type="checkbox" name="" id="checkbox" class="ml-2"><span> tampilkan password</span><br>
                 <br>
             </div><br>
             <input type="submit" class="submit" value="Log In">
         </form>
         <span style="font-size: 10px;">jika belum memiliki maka daftar terlebih dahulu <a href="{{route('signin')}}" style="font-size: 15px;">Register</a></span>
-    </div> 
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if($message = Session::get('sukses-sign'))
         <script>

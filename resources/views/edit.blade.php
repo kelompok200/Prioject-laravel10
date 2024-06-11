@@ -53,14 +53,36 @@
               <label for="">Jam Keluar</label><br>
             <div class="input-group flex-nowrap">
               <span class="input-group-text" id="addon-wrapping"><span class="fa-solid fa-clock"></span></span>
-              <input type="text" class="form-control timepicker" name="jam_keluar" placeholder="Keluar" value="{{$data->jam_keluar}}" aria-label="Keluar" id="input" aria-describedby="addon-wrapping">
+              <input type="time" class="form-control timepicker" name="jam_keluar" placeholder="Keluar" value="{{$data->jam_keluar}}" aria-label="Keluar" id="input" aria-describedby="addon-wrapping">
             </div>
             @error('jam_keluar')
                   <div><small style="color: red;">{{$message}}</small>
             @enderror
             <br>
+            <label for="">Jenis Shift</label><br>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping"><span class="fa-solid fa-clock"></span></span>
+              <select class="form-select" name="jenis_shift" aria-label="Default select example">
+                <option>Pilih Jenis Shift</option>
+                @foreach ($shifts as $s)
+                @foreach ($shift as $sh)
+                @if ($sh->JenisShift === $s->JenisShift)
+                <option value="{{$s->JenisShift}}" selected>{{$s->code}}-{{$s->JenisShift}}</option>
+                @endif
+                @if ($sh->JenisShift != $s->JenisShift)
+                <option value="{{$s->JenisShift}}">{{$s->code}}-{{$s->JenisShift}}</option>
+                @endif
+                @endforeach
+                @endforeach
+              </select>
+            </div>
+            @error('jenis_shift')
+                  <div><small style="color: red;">{{$message}}</small>
+            @enderror
+            <br>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary mt-4" id="submit">Submit</button>
+              <button type="submit" class="btn btn-success m-2" id="submit">Submit</button>
+              <a href="{{route('dasboard',['id'=>$name])}}" class="btn btn-warning m-2">Back</a>
             </div>
           </form>
         </div>

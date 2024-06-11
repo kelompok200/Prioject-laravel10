@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('data_absens', function (Blueprint $table) {
+        Schema::create('jenis_shifts', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_karyawan');
-            $table->string('nama_karyawan');
-            $table->string('tanggal_absensi');
-            $table->string('jam_masuk');
-            $table->string('jam_keluar');
-            $table->string('jenis_shift');
+            $table->string('code');
+            $table->string('JenisShift');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('data_absens');
+        Schema::dropIfExists('jenis_shifts');
     }
 };

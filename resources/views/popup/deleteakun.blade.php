@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="staticBackdrop{{$d->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -7,11 +6,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Apakah anda yakin ingin mengapus <b>{{$d->nama_karyawan}}</b>?
+            Apakah anda yakin ingin mengapus <b>{{$d->name}}</b>?
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <form action="{{route('delete',['name'=>$id,'id'=>$d->id])}}" method="post">
+        <form action="{{route('deleteAkun',['name'=>$id,'id'=>$d->id])}}" method="post">
             @csrf
             <button type="submit" class="btn btn-primary"><span class="fa-solid fa-trash"></span>Hapus</button>
         </form>

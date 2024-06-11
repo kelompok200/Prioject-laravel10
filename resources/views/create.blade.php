@@ -13,14 +13,14 @@
     <div class="card">
       <div class="card-header">
     <h2 class="mt-4 mb-4">ABSENSI KARYAWAN</h2>
-    <form method="POST" action="{{ route('store',['id'=>$d->name]) }}">
+        <form method="POST" action="{{ route('store',['id'=>$id]) }}">
         @csrf
         <div class="alert alert-success" role="alert" id="myAlert">
         </div>
         <label for="">Kode Karyawan</label><br>
         <div class="input-group flex-nowrap">
           <span class="input-group-text" id="addon-wrapping"><span class="fa-brands fa-codepen"></span></span>
-          <input type="text" class="form-control" name="kode_karyawan" placeholder="Kode" aria-label="Kode" id="input" aria-describedby="addon-wrapping">
+          <input type="text" class="form-control" name="kode_karyawan" placeholder="Kode" aria-label="Kode" id="input1" aria-describedby="addon-wrapping">
         </div>
         @error('kode_karyawan')
                 <small style="color: red;">{{$message}}</small>
@@ -29,7 +29,7 @@
         <label for="">Nama Karyawan</label><br>
         <div class="input-group flex-nowrap">
           <span class="input-group-text" id="addon-wrapping"><span class="fa-solid fa-signature"></span></span>
-          <input type="text" class="form-control" name="nama_karyawan" placeholder="Name" aria-label="Name" id="input" aria-describedby="addon-wrapping">
+          <input type="text" class="form-control" name="nama_karyawan" placeholder="Name" aria-label="Name" id="input2" aria-describedby="addon-wrapping">
         </div>
         @error('nama_karyawan')
             <small style="color: red;">{{$message}}</small>
@@ -43,7 +43,7 @@
         <label for="">Jam Masuk</label><br>
       <div class="input-group flex-nowrap">
       <span class="input-group-text" id="addon-wrapping"><span class="fa-solid fa-clock"></span></span>
-      <input type="time" class="form-control" name="jam_masuk" placeholder="Masuk" aria-label="Masuk" id="input" aria-describedby="addon-wrapping">
+      <input type="time" class="form-control" name="jam_masuk" step="60" aria-label="Masuk" id="input3" aria-describedby="addon-wrapping">
       </div>
       @error('jam_masuk')
             <small style="color: red;">{{$message}}</small>
@@ -52,14 +52,29 @@
         <label for="">Jam Keluar</label><br>
       <div class="input-group flex-nowrap">
         <span class="input-group-text" id="addon-wrapping"><span class="fa-solid fa-clock"></span></span>
-        <input type="text" class="form-control timepicker" name="jam_keluar" placeholder="Keluar" aria-label="Keluar" id="input" aria-describedby="addon-wrapping">
+        <input type="time" class="form-control timepicker" name="jam_keluar" placeholder="Keluar" aria-label="Keluar4" id="input" aria-describedby="addon-wrapping">
       </div>
       @error('jam_keluar')
             <div><small style="color: red;">{{$message}}</small>
       @enderror
       <br>
+      <label for="">Jenis Shift</label><br>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"><span class="fa-solid fa-clock"></span></span>
+        <select class="form-select" name="jenis_shift" aria-label="Default select example">
+          <option selected>Pilih Jenis Shift</option>
+          @foreach ($data as $d)
+          <option value="{{$d->JenisShift}}">{{$d->code}}-{{$d->JenisShift}}</option>
+          @endforeach
+        </select>
+      </div>
+      @error('jenis_shift')
+            <div><small style="color: red;">{{$message}}</small>
+      @enderror
+      <br>
       <div class="col-12">
-        <button type="submit" class="btn btn-primary mt-4" id="submit">Submit</button>
+        <button type="submit" class="btn btn-primary m-2" id="submit">Submit</button>
+        <a href="{{route('dasboard',['id'=>$id])}}" class="btn btn-warning m-2">Back</a>
       </div>
     </form>
       </div>
